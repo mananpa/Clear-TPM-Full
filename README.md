@@ -1,128 +1,134 @@
-# Clear-TPM-Full
-Advanced PowerShell tool for TPM cleanup, Secure Boot diagnostics, and UEFI guidance on modern Windows systems.
+# 🔐 Clear-TPM-Full
 
-🧠 Overview
+<p align="center">
+  <img src="assets/logo.svg" width="120" />
+</p>
 
-Clear-TPM-Full is a professional-grade script designed for low-level platform security management, combining:
+<p align="center">
+  <img src="https://img.shields.io/badge/PowerShell-5.1%2B-blue" />
+  <img src="https://img.shields.io/badge/platform-Windows%2010%2F11-lightgrey" />
+  <img src="https://img.shields.io/badge/license-MIT-green" />
+  <img src="https://img.shields.io/badge/status-active-success" />
+</p>
 
-TPM cleanup (multiple methods)
+Advanced PowerShell tool for **TPM cleanup, Secure Boot diagnostics, and UEFI guidance** on modern Windows systems.
 
-Secure Boot inspection and diagnostics
+---
 
-Firmware (UEFI/BIOS) detection
+## 🧠 Overview
 
-Interactive guidance for manual firmware operations
+**Clear-TPM-Full** is a professional-grade script designed for **low-level platform security management**, combining:
 
-It is built for IT professionals, sysadmins, security researchers, and advanced users who need visibility and control over platform security components.
+* TPM cleanup (multiple methods)
+* Secure Boot inspection and diagnostics
+* Firmware (UEFI/BIOS) detection
+* Interactive guidance for manual firmware operations
 
-⚙️ Key Features
-🔐 TPM (Trusted Platform Module)
+Built for **IT professionals, sysadmins, security researchers, and advanced users**.
 
-Native cleanup via Clear-Tpm
+---
 
-Multi-layer fallback:
+## ⚙️ Key Features
 
-WMI (Win32_Tpm)
+### 🔐 TPM (Trusted Platform Module)
 
-Physical Presence Interface (PPI op-codes: 14, 22, 5)
+* Native cleanup via `Clear-Tpm`
+* Multi-layer fallback:
 
-WMIC legacy method
+  * WMI (`Win32_Tpm`)
+  * Physical Presence Interface (PPI op-codes: 14, 22, 5)
+  * WMIC legacy method
+* OwnerAuth reset from Windows registry
+* Firmware-level requests (op 21 / 18)
 
-OwnerAuth reset from Windows registry
+---
 
-Firmware-level requests (op 21 / 18)
+### 🔑 Secure Boot
 
-🔑 Secure Boot
+* Detects **User Mode vs Setup Mode**
+* Enumerates keys:
 
-Detects User Mode vs Setup Mode
+  * PK (Platform Key)
+  * KEK (Key Exchange Key)
+  * db / dbx
+* Automatic backup of Secure Boot keys
+* Controlled attempts to transition to Setup Mode
+* Optional support for signed `.p7` payloads
 
-Enumerates keys:
+---
 
-PK (Platform Key)
+### 🧠 Smart Environment Detection
 
-KEK (Key Exchange Key)
+* Detects:
 
-db / dbx
+  * Manufacturer and model
+  * UEFI vs Legacy BIOS
+  * Special devices (e.g., Microsoft Surface)
+* Provides **vendor-specific instructions**
 
-Automatic backup of Secure Boot keys
+---
 
-Controlled attempts to transition to Setup Mode
+### 🌍 Multilanguage Support
 
-Optional support for signed .p7 payloads
+* Automatic system language detection
+* Built-in translations (EN, ES, FR, DE, RU, JA, ZH, etc.)
+* Easily extendable translation system
 
-🧠 Smart Environment Detection
+---
 
-Detects:
+### 🧭 Guided User Experience
 
-Manufacturer and model
+* Interactive prompts
+* Vendor-specific UEFI access keys
+* BIOS navigation paths for Secure Boot
+* Reboot options:
 
-UEFI vs Legacy BIOS
+  * Normal reboot
+  * Direct to UEFI firmware (`shutdown /r /fw /t 0`)
 
-Special devices (e.g., Microsoft Surface)
+---
 
-Provides vendor-specific instructions
+## 🖥️ Compatibility
 
-🌍 Multilanguage Support
+* Windows 10 / 11
+* TPM 1.2 / 2.0
+* UEFI firmware recommended
+* Requires **Administrator privileges**
 
-Automatic system language detection
+---
 
-Built-in translations (EN, ES, FR, DE, RU, JA, ZH, etc.)
+## ⚠️ Important Limitations
 
-Easily extendable translation system
+* ❌ Does NOT remove BIOS/UEFI passwords
+* ❌ Cannot modify Secure Boot without valid private keys (PK)
+* ❌ Cannot bypass firmware protections (DFCI / enterprise locks)
+* ❌ Some operations require physical confirmation in firmware
 
-🧭 Guided User Experience
+---
 
-Interactive prompts
+## 🧪 Use Cases
 
-Vendor-specific UEFI access keys
+* TPM reset and diagnostics
+* Secure Boot auditing
+* Device preparation for redeployment
+* Troubleshooting platform security issues
+* Advanced system inspection
 
-BIOS navigation paths for Secure Boot
+---
 
-Reboot options:
+## 🚀 Usage
 
-Normal reboot
-
-Direct to UEFI firmware (shutdown /r /fw /t 0)
-
-🖥️ Compatibility
-
-Windows 10 / 11
-
-TPM 1.2 / 2.0
-
-UEFI firmware recommended
-
-Requires Administrator privileges
-
-⚠️ Important Limitations
-
-❌ Does NOT remove BIOS/UEFI passwords
-
-❌ Cannot modify Secure Boot without valid private keys (PK)
-
-❌ Cannot bypass firmware protections (e.g., Surface DFCI / enterprise locks)
-
-❌ Some operations require physical confirmation in firmware
-
-🧪 Use Cases
-
-TPM reset and diagnostics
-
-Secure Boot auditing
-
-Device preparation for redeployment
-
-Troubleshooting platform security issues
-
-Advanced system inspection
-
-🚀 Usage
+```powershell
 # Run as Administrator
+Set-ExecutionPolicy Bypass -Scope Process -Force
 .\Clear-TPM-Full.ps1
-🎬 Demo
+```
 
-Example output (PowerShell):
+---
 
+## 🎬 Demo
+
+```text
 Firmware : UEFI
 Device   : Microsoft Surface Laptop Go
 
@@ -139,43 +145,48 @@ WARNING - THE FOLLOWING WILL BE ERASED:
 [SB]  Secure Boot keys...
 
 Type ERASE to confirm:
-📸 Screenshots
+```
 
-Add your screenshots in:
+---
 
-/docs/screenshots/main.png
-/docs/screenshots/secureboot.png
+## 📸 Screenshots
 
-And display them like this:
+<p align="center">
+  <img src="docs/screenshots/main.png" width="700"/>
+</p>
 
-![Main](docs/screenshots/main.png)
-![Secure Boot](docs/screenshots/secureboot.png)
-🛣️ Roadmap
+<p align="center">
+  <img src="docs/screenshots/secureboot.png" width="700"/>
+</p>
 
-GUI version (WinForms / WPF)
+---
 
-Export diagnostic report (JSON / TXT)
+## 🛣️ Roadmap
 
-Logging system
+* [ ] GUI companion (optional tool)
+* [ ] Export diagnostic report (JSON / TXT)
+* [ ] Logging system
+* [ ] Dry-run / audit-only mode
+* [ ] Remote execution (PowerShell Remoting)
+* [ ] Enhanced Surface / DFCI detection
+* [ ] Plugin system for OEM-specific behavior
 
-Dry-run / audit-only mode
+---
 
-Remote execution support (PowerShell Remoting)
+## 📌 Technical Note
 
-Enhanced Surface / DFCI detection
+This tool operates **within Windows OS limitations**.
 
-Plugin system for OEM-specific behaviors
+Firmware-level protections (UEFI, Secure Boot, OEM security policies) are **not bypassable via software by design**.
 
-📌 Technical Note
+---
 
-This tool operates within Windows OS limitations.
-
-Firmware-level protections (UEFI, Secure Boot, OEM security policies) are by design not bypassable via software.
-
-🤝 Contributing
+## 🤝 Contributing
 
 Contributions, improvements, and suggestions are welcome.
 
-📄 License
+---
+
+## 📄 License
 
 MIT License
