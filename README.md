@@ -152,11 +152,11 @@ Type ERASE to confirm:
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="docs/screenshots/main.png" width="700"/>
+  <img src="docs/screenshots/main.webp" width="700"/>
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/secureboot.png" width="700"/>
+  <img src="docs/screenshots/secureboot.webp" width="700"/>
 </p>
 
 ---
