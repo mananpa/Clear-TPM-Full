@@ -1,0 +1,20 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" rx="30" fill="#0d1117"></rect>
+  
+  <!-- Chip -->
+  <rect x="60" y="70" width="80" height="80" rx="10" fill="#1f6feb"></rect>
+  
+  <!-- Pins -->
+  <g stroke="#58a6ff" stroke-width="2">
+    <line x1="50" y1="80" x2="60" y2="80"></line>
+    <line x1="50" y1="100" x2="60" y2="100"></line>
+    <line x1="50" y1="120" x2="60" y2="120"></line>
+    <line x1="140" y1="80" x2="150" y2="80"></line>
+    <line x1="140" y1="100" x2="150" y2="100"></line>
+    <line x1="140" y1="120" x2="150" y2="120"></line>
+  </g>
+
+  <!-- Lock -->
+  <rect x="75" y="95" width="50" height="40" rx="8" fill="#ffffff"></rect>
+  <path d="M85 95 v-10 a15 15 0 0 1 30 0 v10" stroke="#ffffff" stroke-width="4" fill="none"></path>
+</svg>
